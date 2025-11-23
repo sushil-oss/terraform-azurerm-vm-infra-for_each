@@ -16,48 +16,22 @@ output "storage_account_ids" {
 }
 
 
+output "virtual_network" {
+  value = module.vnet.virtual_network
+}
+
+output "subnets" {
+  value = module.rg_subnet.subnets
+}
+
+output "network_interface" {
+  value = module.rg_nic.nic_ids
+}
 
 
-# Your module declaration
+output "rg_vm" {
+  value = module.rg_vm.rg_myvm
+  sensitive  = true
+  
+}
 
-# You declared the module like this:
-
-# module "storage_account" {
-#     source = "../storage_account"
-#     storages = var.storages
-# }
-
-# Here, the module is named storage_account, not storage.
-
-# 2️⃣ Your outputs
-
-# You have:
-
-# output "storage_account_names" {
-#   value = module.storage.storage_account_names
-# }
-
-# output "storage_account_ids" {
-#   value = module.storage.storage_account_ids
-# }
-
-# But module.storage does not exist. Terraform thinks you are trying to reference a module named storage.
-
-
-# 3️⃣ Fix
-
-# You need to reference the correct module name (storage_account):
-
-# output "storage_account_names" {
-#   value = module.storage_account.storage_account_names
-# }
-
-# output "storage_account_ids" {
-#   value = module.storage_account.storage_account_ids
-# }
-
-# ✅ Summary
-
-# Module name declared = storage_account
-# Reference in output must match exactly: module.storage_account
-# Error disappears once you fix the references.
