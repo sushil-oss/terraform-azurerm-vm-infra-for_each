@@ -35,3 +35,18 @@ output "rg_vm" {
   
 }
 
+
+output "key_vault_ids" {
+  value = module.key_voult.kv_ids
+}
+
+output "key_vault_names" {
+  value = module.key_voult.kv_names
+}
+
+
+output "kv_secret" {
+  value = module.kv_secrets.rg_secrets
+  sensitive = true
+}
+

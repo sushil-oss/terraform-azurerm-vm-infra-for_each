@@ -79,7 +79,7 @@ nics = {
     ]
   }
 
-   "nic2" = {
+  "nic2" = {
     name                = "mynic2"
     location            = "westus"
     resource_group_name = "sushrg2"
@@ -113,6 +113,36 @@ vms = {
     # network_interface_keys = ["nic1"]
     vm_size = "Standard_B1s"
     #network_interface_ids  = [module.rg_nic.nic_ids["nic2"]]
+  }
+}
+
+
+kvs = {
+  kv1 = {
+    name                        = "sushkv001"
+    location                    = "westus"
+    resource_group_name         = "sushrg1"
+    sku_name                    = "standard"
+    tenant_id                   = "28c3654a-a897-4228-8e6a-099ee5e50a80"
+    soft_delete_retention_days  = 7
+    purge_protection_enabled    = false
+    enabled_for_disk_encryption = true
+    access_policy = [{
+      key_permissions     = ["Get", "List"]
+      object_id           = "f7b7fd9f-c1a6-4224-9ac1-17130f6d1693"
+      secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup", "Restore", "Purge"]
+      storage_permissions = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
+      tenant_id           = "28c3654a-a897-4228-8e6a-099ee5e50a80"
+    }]
+  }
+}
+
+
+secrets = {
+  secret1 = {
+    name                 = "mysecret11"
+    value                = "supersecrte"
+
   }
 }
 

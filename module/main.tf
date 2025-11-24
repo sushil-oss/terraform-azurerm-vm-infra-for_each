@@ -53,3 +53,19 @@ module "rg_vm" {
     vm2 = module.rg_nic.nic_ids["nic2"]
   }
 }
+
+
+module "key_voult" {
+  depends_on = [ module.resource_group ]
+  source = "../azurerm_kv"
+  kvs = var.kvs
+  default_key_vault_id = module.key_voult.kv_ids[ "kv1"]
+}
+
+
+module "kv_secrets" {
+  depends_on = [ module.key_voult ]
+  source = "../azurerm_kv_secret"
+  secrets = var.secrets
+  default_key_vault_id = module.key_voult.kv_ids["kv1"]
+}
