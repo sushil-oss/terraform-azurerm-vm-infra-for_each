@@ -30,9 +30,9 @@ output "network_interface" {
 
 
 output "rg_vm" {
-  value = module.rg_vm.rg_myvm
-  sensitive  = true
-  
+  value     = module.rg_vm.rg_myvm
+  sensitive = true
+
 }
 
 
@@ -46,7 +46,14 @@ output "key_vault_names" {
 
 
 output "kv_secret" {
-  value = module.kv_secrets.rg_secrets
+  value     = module.kv_secrets.rg_secrets
   sensitive = true
 }
+
+
+
+output "kv_keys" {
+  value = module.kv_keys.rg_keys
+}
+
 

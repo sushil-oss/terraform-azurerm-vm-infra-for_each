@@ -119,7 +119,7 @@ vms = {
 
 kvs = {
   kv1 = {
-    name                        = "sushkv001"
+    name                        = "sushkv003"
     location                    = "westus"
     resource_group_name         = "sushrg1"
     sku_name                    = "standard"
@@ -128,7 +128,7 @@ kvs = {
     purge_protection_enabled    = false
     enabled_for_disk_encryption = true
     access_policy = [{
-      key_permissions     = ["Get", "List"]
+      key_permissions     = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "Decrypt", "Encrypt", "UnwrapKey", "WrapKey", "Verify", "Sign", "Purge", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
       object_id           = "f7b7fd9f-c1a6-4224-9ac1-17130f6d1693"
       secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup", "Restore", "Purge"]
       storage_permissions = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
@@ -140,9 +140,43 @@ kvs = {
 
 secrets = {
   secret1 = {
-    name                 = "mysecret11"
-    value                = "supersecrte"
+    name  = "mysecret11"
+    value = "supersecrte"
 
+  }
+}
+
+
+keys = {
+  key1 = {
+    name         = "mykey01"
+    key_vault_id = ""
+    key_type     = "RSA"
+    key_size     = 2048
+    key_opts     = ["decrypt", "encrypt", "sign", "unwrapKey", "verify", "wrapKey"]
+    rotation_policy = {
+      # automatic = {
+      #   time_before_expiry = "P30D"
+      # }
+      expire_after         = "P90D"
+      notify_before_expiry = "P15D"
+    }
+  }
+}
+
+containers = {
+  container1 = {
+    name                  = "sushcont001"
+    container_access_type = "private"
+    storage_account_key   = "storage11"
+     #storage_account_id    = module.storage_account.storage_account_ids["storage11"]
+  }
+
+  container2 = {
+    name                  = "sushcont002"
+    container_access_type = "private"
+    storage_account_key   = "storage22"
+     #storage_account_id    = module.storage_account.storage_account_ids["storage22"]
   }
 }
 

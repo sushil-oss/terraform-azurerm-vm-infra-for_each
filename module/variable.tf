@@ -50,7 +50,7 @@ variable "nics" {
         object({
           name                          = string
           subnet_id                     = optional(string)
-          subnet_key                    = optional(string)   # optional
+          subnet_key                    = optional(string) # optional
           private_ip_address_allocation = string
         })
       )
@@ -60,14 +60,14 @@ variable "nics" {
 
 
 variable "vms" {
-    type = map(object({
-      name  = string
-      location = string
-      resource_group_name = string
-      network_interface_ids = optional(list(string))
-      vm_size = string
-    }))
-  
+  type = map(object({
+    name                  = string
+    location              = string
+    resource_group_name   = string
+    network_interface_ids = optional(list(string))
+    vm_size               = string
+  }))
+
 }
 
 
@@ -97,21 +97,51 @@ variable "kvs" {
 # variable "default_key_vault_id" {
 #     type = string
 #     description = "default key vault id to use if not specified in secret"
-  
+
 # }
 
 
 variable "secrets" {
-    description = " A map of secrets to create in key vault"
-    type = map(object({
-      name = string
-      value = string
-      key_vault_id = optional(string)
+  description = " A map of secrets to create in key vault"
+  type = map(object({
+    name         = string
+    value        = string
+    key_vault_id = optional(string)
 
-    }))
+  }))
 }
 variable "default_key_vault_id" {
   type        = string
   description = "Default Key Vault ID to use if not specified per secret"
-  default     = ""  # Agar default empty hai
+  default     = "" # Agar default empty hai
+}
+
+
+
+variable "keys" {
+  description = "A map of keys to create in the key vault"
+  type = map(object({
+    name         = string
+    key_vault_id = string
+    key_type     = string
+    key_size     = number
+    key_opts     = list(string)
+
+    rotation_policy = optional(object({
+      expire_after         = string
+      notify_before_expiry = string
+      # automatic = optional(object({
+      #   time_before_expiry = string
+    }))
+  }))
+}
+
+
+variable "containers" {
+  type = map(object({
+    name                  = string
+    container_access_type = string
+    storage_account_id    = optional(string)
+    storage_account_key = optional(string)
+  }))
 }
