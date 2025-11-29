@@ -145,3 +145,30 @@ variable "containers" {
     storage_account_key = optional(string)
   }))
 }
+
+
+variable "sqlservers" {
+  type = map(object({
+    name                         = string
+    resource_group_name          = string
+    location                     = string
+    administrator_login          = string
+    administrator_login_password = string
+    version                      = string
+    
+  }))
+
+}
+
+
+variable "sqldbs" {
+  type = map(object({
+    name                = string
+   # location            = string
+   # server_name         = string
+   # resource_group_name = string
+    server_id = optional(string)
+  }))
+
+}
+

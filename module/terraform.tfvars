@@ -180,3 +180,27 @@ containers = {
   }
 }
 
+
+sqlservers = {
+  sqlserver12 = {
+    name                         = "sushsqlserver1"
+    resource_group_name          = "sushrg1"
+    administrator_login          = "4dm1n157r470r"
+    administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+    version                      = "12.0"
+    location                     = "westus"
+  }
+}
+
+
+sqldbs = {
+  sqlbd1 = {
+    name                = "sushsqldb1"
+    location            = "eastus"
+    server_name         = ""
+    resource_group_name = ""
+    server_id = ""
+
+
+  }
+}

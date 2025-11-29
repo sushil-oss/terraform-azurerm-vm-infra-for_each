@@ -91,3 +91,21 @@ module "kv_keys" {
   default_key_vault_id = module.key_voult.kv_ids["kv1"]
 
 }
+
+module "sql_server" {
+  depends_on = [ module.key_voult ]
+  source = "../azurerm_sql_server"
+  sqlservers = var.sqlservers
+}
+
+module "sql_db" {
+  depends_on = [ module.sql_server]
+  source = "../azurerm_sql_db"
+  sqldbs = {
+    for k, v in var.sqldbs :
+    k => merge(v, {
+      server_id = module.sql_server.server_ids["sqlserver12"]
+    })
+  }
+  
+}
