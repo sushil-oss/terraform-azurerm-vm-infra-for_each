@@ -22,3 +22,5 @@ output "kv_locations" {
   description = "Map of Key Vault key => Location"
   value       = { for k, v in azurerm_key_vault.kv1 : k => v.location }
 }
+
+

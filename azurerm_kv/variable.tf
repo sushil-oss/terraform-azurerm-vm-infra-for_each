@@ -8,6 +8,7 @@ variable "kvs" {
     soft_delete_retention_days  = number
     purge_protection_enabled    = bool
     enabled_for_disk_encryption = bool
+    
 
 
     access_policy = list(object({
