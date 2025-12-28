@@ -7,6 +7,11 @@ rg_name = {
     name     = "sushrg2"
     location = "westus"
   }
+
+  rg3 = {
+    name     = "sushrg3"
+    location = "eastus"
+}
 }
 
 #### Storage Accounts ####
@@ -62,6 +67,13 @@ subnets = {
     virtual_network_name = "mynet2"
     address_prefixes     = ["10.0.3.0/24"]
   }
+
+  subnet3 = {
+    name                 = "mysub33"
+    resource_group_name  = "sushrg1"
+    virtual_network_name = "mynet1"
+    address_prefixes     = ["10.0.4.0/24"]
+  } 
 }
 
 ## Network Interface Card Creation ##
@@ -101,16 +113,18 @@ vms = {
     name                = "frontend-vm"
     location            = "westus"
     resource_group_name = "sushrg1"
-    vm_size             = "Standard_B1s"
-  }
-
-  vm2 = {
-    name                = "backend-vm"
-    location            = "westus"
-    resource_group_name = "sushrg2"
     vm_size             = "Standard_D2s_v3"
   }
 }
+
+
+  # vm2 = {
+  #   name                = "backend-vm"
+  #   location            = "westus"
+  #   resource_group_name = "sushrg2"
+  #   vm_size             = "Standard_D2s_v3"
+  # }
+
 
 
 ## Key Vault Creation ##
@@ -209,6 +223,22 @@ pips = {
     location            = "westus"
     resource_group_name = "sushrg1"
     allocation_method   = "Static"
+  }
+
+
+  pip2 = {
+    name                = "sushpip2"
+    location            = "westus"
+    resource_group_name = "sushrg1"
+    allocation_method   = "Static" 
+
+  }
+
+  pip3 = {
+    name                = "sushpip3"
+    location            = "eastus"
+    resource_group_name = "sushrg3"
+    allocation_method   = "Static" 
 
   }
 }
@@ -223,7 +253,7 @@ lbs = {
     frontend_ip_configuration = {
       pip1 = {
         name                 = "frontend1"
-        public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/mypip1"
+        public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
       }
     }
 
@@ -305,12 +335,12 @@ app_gws = {
 
     gateway_ip_configuration = {
       name      = "gatewayipconfig1"
-      subnet_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub11"
+      subnet_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub33"
     }
 
     frontend_ip_configuration = {
       name                 = "frontend1"
-      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/mypip1"
+      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip2"
     }
 
     frontend_port = {
@@ -343,6 +373,7 @@ app_gws = {
       http_listener_name         = "httplistener1"
       backend_address_pool_name  = "backendaddresspool1"
       backend_http_settings_name = "backendhttpsettings1"
+      priority                   = 100
     }
   }
 }
@@ -357,7 +388,7 @@ bastions = {
     ip_configuration = {
       name                 = "ipconfig1"
       subnet_key           = "bastion_subnet"
-      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/mypip1"
+      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
       }
     
   }

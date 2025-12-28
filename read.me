@@ -41,3 +41,26 @@
 # Module name declared = storage_account
 # Reference in output must match exactly: module.storage_account
 # Error disappears once you fix the references.
+
+
+
+==============================
+
+Error: creating Bastion Host (Subscription: "6c750392-d85d-41e6-a2be-4dc4ddc9d11d"
+│ Resource Group Name: "sushrg1"
+│ Bastion Host Name: "mybastionhost1"): performing CreateOrUpdate: unexpected status 400 (400 Bad Request) with error: PublicIPAddressInUse: Resource /subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/bastionHosts/mybastionhost1 is referencing public IP address /subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1 that is already allocated to resource /subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/loadBalancers/myLoadBalancer1/frontendIPConfigurations/frontend1.
+│
+│   with module.bastion.azurerm_bastion_host.mybas1["bastion1"],
+│   on ..\azurerm_bastion\main.tf line 1, in resource "azurerm_bastion_host" "mybas1":
+│    1: resource "azurerm_bastion_host" "mybas1" {
+│
+╵
+╷
+│ Error: creating/updating Azure Firewall (Subscription: "6c750392-d85d-41e6-a2be-4dc4ddc9d11d"
+│ Resource Group Name: "sushrg1"
+│ Azure Firewall Name: "sushfire1"): performing CreateOrUpdate: unexpected status 400 (400 Bad Request) with error: AzureFirewallPublicIPNotProvided: AzureFirewall sushfire1 references subnet /subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/AzureFirewallSubnet, but does not provide a PublicIP Address.
+│
+│   with module.firewall.azurerm_firewall.myfire1["fire1"],
+│   on ..\azurerm_firewall\main.tf line 1, in resource "azurerm_firewall" "myfire1":
+│    1: resource "azurerm_firewall" "myfire1" {
+│
