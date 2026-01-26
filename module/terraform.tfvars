@@ -162,7 +162,7 @@ secrets = {
 keys = {
   key1 = {
     name         = "mykey01"
-    key_vault_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.KeyVault/vaults/sushkv006"
+    key_vault_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.KeyVault/vaults/sushkv006"
     key_type     = "RSA"
     key_size     = 2048
     key_opts     = ["decrypt", "encrypt", "sign", "unwrapKey", "verify", "wrapKey"]
@@ -212,7 +212,7 @@ sqldbs = {
     location            = "westus"
     server_name         = "sushsqlserver1"
     resource_group_name = "sushrg1"
-    server_id           = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Sql/servers/sushsqlserver1"
+    server_id           = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Sql/servers/sushsqlserver1"
 
   }
 }
@@ -253,7 +253,7 @@ lbs = {
     frontend_ip_configuration = {
       pip1 = {
         name                 = "frontend1"
-        public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
+        public_ip_address_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
       }
     }
 
@@ -296,7 +296,7 @@ role_assigns = {
   role1 = {
     principal_id                     = "f352838a-bb61-47ee-9b04-cda1e470c55c"
     role_definition_name             = "AcrPull"
-    scope                            = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.ContainerRegistry/registries/sushacr1"
+    scope                            = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.ContainerRegistry/registries/sushacr1"
     skip_service_principal_aad_check = false
   }
 }
@@ -307,11 +307,11 @@ private_endpoints = {
     name                = "mypep1"
     location            = "westus"
     resource_group_name = "sushrg1"
-    subnet_id           = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub11"
+    subnet_id           = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub11"
 
     private_service_connection = {
       name                           = "mypsc1"
-      private_connection_resource_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Storage/storageAccounts/sushstg5"
+      private_connection_resource_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Storage/storageAccounts/sushstg5"
       is_manual_connection           = false
 
       subresource_names = ["blob"]
@@ -335,12 +335,12 @@ app_gws = {
 
     gateway_ip_configuration = {
       name      = "gatewayipconfig1"
-      subnet_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub33"
+      subnet_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/mysub33"
     }
 
     frontend_ip_configuration = {
       name                 = "frontend1"
-      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip2"
+      public_ip_address_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip2"
     }
 
     frontend_port = {
@@ -388,14 +388,14 @@ bastions = {
     ip_configuration = {
       name                 = "ipconfig1"
       subnet_key           = "bastion_subnet"
-      public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
+      public_ip_address_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/sushpip1"
       }
     
   }
 }
 
 subnet_ids = {
-  bastion_subnet = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/AzureBastionSubnet"
+  bastion_subnet = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/AzureBastionSubnet"
 }
 
 
@@ -409,8 +409,8 @@ firewalls = {
     ip_configuration = {
       name                 = "firewallipconfig1"
       subnet_key           = "firewall_subnet"
-      subnet_id            = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/AzureFirewallSubnet"
-     # public_ip_address_id = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/firewallpip1"
+      subnet_id            = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/virtualNetworks/mynet1/subnets/AzureFirewallSubnet"
+     # public_ip_address_id = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.Network/publicIPAddresses/firewallpip1"
     }
     
   }
@@ -454,7 +454,7 @@ app_insites = {
     location            = "westus"
     resource_group_name = "sushrg1"
     application_type    = "web"
-    workspace_id        = "/subscriptions/6c750392-d85d-41e6-a2be-4dc4ddc9d11d/resourceGroups/sushrg1/providers/Microsoft.OperationalInsights/workspaces/sushlaw2"
+    workspace_id        = "/subscriptions/<subscriptio_id>/resourceGroups/sushrg1/providers/Microsoft.OperationalInsights/workspaces/sushlaw2"
     tags = {
       environment = "staging"
   }
